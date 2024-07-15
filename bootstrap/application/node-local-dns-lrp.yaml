@@ -17,7 +17,7 @@ spec:
   project: default
   source:
     path: infrastructure/node-local-dns-lrp/manifest/
-    repoURL: https://github.com/zhurkin/argocd-demo.git
+    repoURL: https://github.com/alxmatweew/argo-demo.git
     targetRevision: main
   syncPolicy:
     automated: null

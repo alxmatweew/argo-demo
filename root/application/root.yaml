@@ -14,7 +14,7 @@ spec:
   project: default
   source:
     path: root/application/
-    repoURL: https://github.com/zhurkin/argocd-demo.git
+    repoURL: https://github.com/alxmatweew/argo-demo.git
     targetRevision: main
   syncPolicy:
     automated:
