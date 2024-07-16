@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: cert-manager-crt
+---
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: argo-selfsigned
+  namespace: cert-manager-crt
+spec:
+  selfSigned: {}
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: argo-selfsigned-cert
+  namespace: cert-manager-crt
+spec:
+  dnsNames:
+    - argocd.home.loc
+  secretName: selfsigned-cert-tls
+  issuerRef:
+    name: argo-selfsigned
