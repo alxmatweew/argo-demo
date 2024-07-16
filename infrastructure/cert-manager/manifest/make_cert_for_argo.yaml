@@ -22,3 +22,25 @@ spec:
   secretName: selfsigned-cert-tls
   issuerRef:
     name: argo-selfsigned
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: argocd-server
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - argocd.home.loc
+      secretName: argo-selfsigned-cert
+  rules:
+    - host: argocd.home.loc
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: argocd-server
+                port:
+                  number: 443
