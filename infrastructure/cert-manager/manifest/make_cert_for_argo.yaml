@@ -15,11 +15,37 @@ apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: argo-selfsigned-cert
-#  namespace: cert-manager-crt
+  namespace: argocd
 spec:
   dnsNames:
     - argocd.home.loc
   secretName: selfsigned-cert-tls
   issuerRef:
     name: argo-selfsigned
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: argocd-selfcert-server
+  namespace: argocd
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-passthrough: "true"
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - argocd.home.loc
+      secretName: selfsigned-cert-tls
+  rules:
+    - host: argocd.home.loc
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: argocd-server
+                port:
+                  number: 443
 
