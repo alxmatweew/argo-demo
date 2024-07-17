@@ -38,7 +38,7 @@ spec:
   tls:
     - hosts:
         - argocd.home.loc
-      secretName: argo-selfsigned-cert
+      secretName: selfsigned-cert-tls
   rules:
     - host: argocd.home.loc
       http:
