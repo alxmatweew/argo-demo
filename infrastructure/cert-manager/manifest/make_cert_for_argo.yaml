@@ -4,10 +4,10 @@
 #  name: cert-manager-crt
 #---
 apiVersion: cert-manager.io/v1
-kind: ClusterIssuer
+kind: Issuer
 metadata:
   name: argo-selfsigned
-#  namespace: cert-manager-crt
+  namespace: argocd
 spec:
   selfSigned: {}
 ---
