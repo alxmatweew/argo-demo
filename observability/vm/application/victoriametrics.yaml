@@ -22,8 +22,8 @@ spec:
            value: "false"
          - name: grafana.enabled
            value: "false"
-         - name: vmagent.spec.extraArgs.promscrape.dropOriginalLabels
-           value: "false"
+         #- name: vmagent.spec.extraArgs.promscrape.dropOriginalLabels
+           #value: "false"
     chart: victoria-metrics-k8s-stack #vm/victoria-metrics-k8s-stack
   destination:
     server: 'https://kubernetes.default.svc'
