@@ -10,7 +10,7 @@ spec:
     namespace: argocd
   project: default
   source:
-    path: observability/vm/application/
+    path: observability/vm/application
     repoURL: https://github.com/zhurkin/argocd-demo.git #<----- Поменяй на свой!
     targetRevision: main
     directory:
