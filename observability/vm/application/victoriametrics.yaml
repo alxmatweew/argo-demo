@@ -11,19 +11,19 @@ spec:
     helm:
       parameters:
          - name: nameOverride
-           value: vm
+           value: "vm"
          - name: defaultDashboardsEnabled
-           value: false
+           value: "false"
          - name: experimentalDashboardsEnabled
-           value: false
+           value: "false"
          - name: alertmanager.enabled
-           value: false
+           value: "false"
          - name: vmalert.enabled
-           value: false
+           value: "false"
          - name: grafana.enabled
-           value: false
+           value: "false"
          - name: vmagent.spec.extraArgs.promscrape.dropOriginalLabels
-           value: false
+           value: "false"
     chart: vm/victoria-metrics-k8s-stack
   destination:
     server: 'https://kubernetes.default.svc'
