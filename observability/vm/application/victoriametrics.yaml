@@ -28,7 +28,8 @@ spec:
           vmScrape:
             spec:
               endpoints:
-                  - tlsConfig:
+                - bearerTokenFile: /var/run/secrets/kubernetes.io/serviceaccount/token
+                  tlsConfig:
                     caFile: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
                     insecureSkipVerify: true
                     serverName: kubernetes
