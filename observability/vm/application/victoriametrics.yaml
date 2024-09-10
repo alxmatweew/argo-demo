@@ -22,8 +22,31 @@ spec:
            value: "false"
          - name: grafana.enabled
            value: "false"
-         #- name: vmagent.spec.extraArgs.promscrape.dropOriginalLabels
-           #value: "false"
+      values: |-
+        kubeScheduler:
+          enabled: true
+          vmScrape:
+            spec:
+              endpoints:
+                  tlsConfig:
+                    caFile: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+                    insecureSkipVerify: true
+                    serverName: kubernetes
+        kubeControllerManager:
+          enabled: true
+          vmScrape:
+            spec:
+              endpoints:
+                - bearerTokenFile: /var/run/secrets/kubernetes.io/serviceaccount/token
+                  tlsConfig:
+                    caFile: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+                    insecureSkipVerify: true
+                    serverName: kubernetes
+        vmagent:
+          spec:
+            extraArgs:
+              promscrape.dropOriginalLabels: "true"
+           
     chart: victoria-metrics-k8s-stack #vm/victoria-metrics-k8s-stack
   destination:
     server: 'https://kubernetes.default.svc'
