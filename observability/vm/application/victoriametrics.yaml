@@ -22,7 +22,7 @@ spec:
            value: "false"
          - name: grafana.enabled
            value: "false"
-      values: |-
+      values: |
         kubeScheduler:
           enabled: true
           vmScrape:
