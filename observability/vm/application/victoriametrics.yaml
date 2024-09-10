@@ -25,11 +25,10 @@ spec:
       values: |-
         kubeScheduler:
           enabled: true
-          endpoints: []
           vmScrape:
             spec:
               endpoints:
-                  tlsConfig:
+                  - tlsConfig:
                     caFile: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
                     insecureSkipVerify: true
                     serverName: kubernetes
