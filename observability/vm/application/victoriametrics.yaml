@@ -25,6 +25,7 @@ spec:
       values: |-
         kubeScheduler:
           enabled: true
+          endpoints: []
           vmScrape:
             spec:
               endpoints:
