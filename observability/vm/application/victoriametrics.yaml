@@ -103,7 +103,7 @@ spec:
               endpoints:
                 - bearerTokenFile: /var/run/secrets/kubernetes.io/serviceaccount/token
                   port: http-metrics
-                  scheme: http
+                  scheme: http  # <--- Т.к. etcd выдает метрики и по http, то потому эта схема и сделана. Если нужно по https, то тогда в этом блоке еще сертификаты и ключи нужны, которые примет etcd
                   tlsConfig:
                     caFile: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
         vmagent:
@@ -120,7 +120,7 @@ spec:
             externalLabels: {}
             extraArgs:
               promscrape.streamParse: "true"
-              promscrape.dropOriginalLabels: "false"
+              promscrape.dropOriginalLabels: "false" #<--- Этот параметр включает возможность отладки правил relabel-инга метрик. Если отладка не нужна, то выставить в "true"
          
     chart: victoria-metrics-k8s-stack #vm/victoria-metrics-k8s-stack
   destination:
