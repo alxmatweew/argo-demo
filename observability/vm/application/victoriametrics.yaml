@@ -22,13 +22,13 @@ spec:
            value: "false"
          - name: grafana.enabled
            value: "false"
-         - name: kubeEtcd.service.port
-           value: "2381"
-         - name: kubeEtcd.service.targetPort
-           value: "2381"
+         # - name: kubeEtcd.service.port
+         #   value: "2381"
+         # - name: kubeEtcd.service.targetPort
+         #   value: "2381"
 
-         - name: kubeEtcd.vmScrape.spec.endpoints.scheme
-           value: "http"
+         # - name: kubeEtcd.vmScrape.spec.endpoints.scheme
+         #   value: "http"
 
       values: |
         kubeScheduler:
@@ -76,6 +76,26 @@ spec:
                     caFile: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
                     insecureSkipVerify: true
                     serverName: kubernetes
+        kubeEtcd:
+          enabled: true
+          endpoints: []
+          service:
+            enabled: true
+            port: 2381
+            targetPort: 2381
+            selector:
+              component: etcd
+          vmScrape:
+            spec:
+              jobLabel: jobLabel
+              namespaceSelector:
+                matchNames: [kube-system]
+              endpoints:
+                - bearerTokenFile: /var/run/secrets/kubernetes.io/serviceaccount/token
+                  port: http-metrics
+                  scheme: http
+                  tlsConfig:
+                    caFile: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
         vmagent:
           enabled: true
           annotations: {}
