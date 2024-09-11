@@ -82,7 +82,7 @@ spec:
             externalLabels: {}
             extraArgs:
               promscrape.streamParse: "true"
-              promscrape.dropOriginalLabels: "true"
+              promscrape.dropOriginalLabels: "false"
          
     chart: victoria-metrics-k8s-stack #vm/victoria-metrics-k8s-stack
   destination:
