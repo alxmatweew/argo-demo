@@ -22,6 +22,10 @@ spec:
            value: "false"
          - name: grafana.enabled
            value: "false"
+         - name: kubeEtcd.service.port
+           value: "2381"
+         - name: kubeEtcd.service.targetPort
+           value: "2381"
       values: |
         kubeScheduler:
           enabled: true
@@ -68,21 +72,21 @@ spec:
                     caFile: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
                     insecureSkipVerify: true
                     serverName: kubernetes
-        vmagent:
-          enabled: true
-          annotations: {}
-          additionalRemoteWrites:
-            []
-          spec:
-            port: "8429"
-            selectAllByDefault: true
-            image:
-              tag: v1.103.0
-            scrapeInterval: 20s
-            externalLabels: {}
-            extraArgs:
-              promscrape.streamParse: "true"
-              promscrape.dropOriginalLabels: "false"
+        # vmagent:
+        #   enabled: true
+        #   annotations: {}
+        #   additionalRemoteWrites:
+        #     []
+        #   spec:
+        #     port: "8429"
+        #     selectAllByDefault: true
+        #     image:
+        #       tag: v1.103.0
+        #     scrapeInterval: 20s
+        #     externalLabels: {}
+        #     extraArgs:
+        #       promscrape.streamParse: "true"
+        #       promscrape.dropOriginalLabels: "false"
          
     chart: victoria-metrics-k8s-stack #vm/victoria-metrics-k8s-stack
   destination:
