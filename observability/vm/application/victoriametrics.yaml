@@ -26,6 +26,10 @@ spec:
            value: "2381"
          - name: kubeEtcd.service.targetPort
            value: "2381"
+
+         - name: kubeEtcd.vmScrape.spec.endpoints.scheme
+           value: "http"
+
       values: |
         kubeScheduler:
           enabled: true
