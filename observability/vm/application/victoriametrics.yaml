@@ -1,3 +1,14 @@
+## --- Перед тем, как развернуть, необходимо проделать на кластере:
+# 1. Заменить вот в этих файлах манифестах:
+#   nano /etc/kubernetes/manifests/kube-controller-manager.yaml
+#   nano /etc/kubernetes/manifests/kube-scheduler.yaml
+# В строках  "--bind-address", "livenessProbe", "startupProbe" адрес "127.0.0.1" на адрес Контрол-ноды (сделать на всех контол-нодах)
+#  Это позволит собирать метрики с kube-controller-manager и kube-scheduler
+#
+# 2. В файле /etc/kubernetes/manifests/etcd.yaml добавить ",http://<АДРЕС Контрол-ноды>:2381" в конец строки "- --listen-metrics-urls=http://127.0.0.1:2381"
+#  Это позволит собирать метрики с etcd 
+## ---
+
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
@@ -22,14 +33,13 @@ spec:
            value: "false"
          - name: grafana.enabled
            value: "false"
-         # - name: kubeEtcd.service.port
-         #   value: "2381"
-         # - name: kubeEtcd.service.targetPort
-         #   value: "2381"
-
-         # - name: kubeEtcd.vmScrape.spec.endpoints.scheme
-         #   value: "http"
-
+         ## Закоментировал, т.к. не получается все параметры так передать. Сделал для этого отдельно раздел в Values-блоке ##
+         # - name: kubeEtcd.service.port        # <--- Эта строка в Арго нормально отработала
+         #   value: "2381"                      # <--- Эта строка в Арго нормально отработала
+         # - name: kubeEtcd.service.targetPort  # <--- Эта строка в Арго нормально отработала
+         #   value: "2381"                      # <--- Эта строка в Арго нормально отработала
+         # - name: kubeEtcd.vmScrape.spec.endpoints.scheme # <--- Эта строка в Арго не отрабатывает
+         #   value: "http"                                 # <--- Эта строка в Арго не отрабатывает
       values: |
         kubeScheduler:
           enabled: true
