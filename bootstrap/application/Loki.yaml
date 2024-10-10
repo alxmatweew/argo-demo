@@ -10,7 +10,7 @@ spec:
     namespace: argocd
   project: default
   source:
-    path: observability/loki
+    path: observability/loki/
     repoURL: https://github.com/alxmatweew/argo-demo.git #<----- Поменяй на свой!
     targetRevision: main
     directory:
