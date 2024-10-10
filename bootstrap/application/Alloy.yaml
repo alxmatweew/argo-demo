@@ -10,7 +10,7 @@ spec:
     namespace: argocd
   project: default
   source:
-    path: observability/alloy
+    path: observability/alloy/
     repoURL: https://github.com/alxmatweew/argo-demo.git #<----- Поменяй на свой!
     targetRevision: main
     directory:
