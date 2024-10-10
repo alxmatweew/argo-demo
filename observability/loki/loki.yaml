@@ -9,26 +9,6 @@ spec:
     repoURL: 'https://grafana.github.io/helm-charts'
     targetRevision: "6.12.0"
     helm:
-      # parameters:
-      #    - name: nameOverride
-      #      value: "vm"
-      #    - name: defaultDashboardsEnabled
-      #      value: "false"
-      #    - name: experimentalDashboardsEnabled
-      #      value: "false"
-      #    - name: alertmanager.enabled
-      #      value: "false"
-      #    - name: vmalert.enabled
-      #      value: "false"
-      #    - name: grafana.enabled
-      #      value: "false"
-         ## Закоментировал, т.к. не получается все параметры так передать. Сделал для этого отдельно раздел в Values-блоке ##
-         # - name: kubeEtcd.service.port        # <--- Эта строка в Арго нормально отработала
-         #   value: "2381"                      # <--- Эта строка в Арго нормально отработала
-         # - name: kubeEtcd.service.targetPort  # <--- Эта строка в Арго нормально отработала
-         #   value: "2381"                      # <--- Эта строка в Арго нормально отработала
-         # - name: kubeEtcd.vmScrape.spec.endpoints.scheme # <--- Эта строка в Арго не отрабатывает
-         #   value: "http"                                 # <--- Эта строка в Арго не отрабатывает
       values: |
         loki:
           schemaConfig:
@@ -51,15 +31,15 @@ spec:
           # Should authentication be enabled
           auth_enabled: false
  
-         chunksCache:
+          chunksCache:
           # -- Specifies whether memcached based chunks-cache should be enabled
           enabled: true
           # -- Amount of memory allocated to chunks-cache for object storage (in MB).
           allocatedMemory: 512
         
           # -- Tolerations for chunks-cache pods
-        #  tolerations:
-        #  - key: node-role.kubernetes.io/control-plane
+          tolerations:
+          - key: node-role.kubernetes.io/control-plane
         
         gateway:
           ingress:
