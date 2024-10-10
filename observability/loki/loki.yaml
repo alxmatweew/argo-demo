@@ -30,25 +30,23 @@ spec:
         
           # Should authentication be enabled
           auth_enabled: false
- 
-          chunksCache:
+        chunksCache:
           # -- Specifies whether memcached based chunks-cache should be enabled
           enabled: true
           # -- Amount of memory allocated to chunks-cache for object storage (in MB).
           allocatedMemory: 512
-        
           # -- Tolerations for chunks-cache pods
           tolerations:
           - key: node-role.kubernetes.io/control-plane
         
-        gateway:
-          ingress:
-            enabled: true
-            hosts:
-              - host: loki-gateway.home.loc
-                paths:
-                  - path: /
-                    pathType: Prefix
+        # gateway:
+        #   ingress:
+        #     enabled: true
+        #     hosts:
+        #       - host: loki-gateway.home.loc
+        #         paths:
+        #           - path: /
+        #             pathType: Prefix
         
         deploymentMode: SimpleScalable
         
