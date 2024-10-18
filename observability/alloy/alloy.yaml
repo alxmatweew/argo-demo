@@ -9,26 +9,6 @@ spec:
     repoURL: 'https://grafana.github.io/helm-charts'
     targetRevision: "0.6.1"
     helm:
-      # parameters:
-      #    - name: nameOverride
-      #      value: "vm"
-      #    - name: defaultDashboardsEnabled
-      #      value: "false"
-      #    - name: experimentalDashboardsEnabled
-      #      value: "false"
-      #    - name: alertmanager.enabled
-      #      value: "false"
-      #    - name: vmalert.enabled
-      #      value: "false"
-      #    - name: grafana.enabled
-      #      value: "false"
-         ## Закоментировал, т.к. не получается все параметры так передать. Сделал для этого отдельно раздел в Values-блоке ##
-         # - name: kubeEtcd.service.port        # <--- Эта строка в Арго нормально отработала
-         #   value: "2381"                      # <--- Эта строка в Арго нормально отработала
-         # - name: kubeEtcd.service.targetPort  # <--- Эта строка в Арго нормально отработала
-         #   value: "2381"                      # <--- Эта строка в Арго нормально отработала
-         # - name: kubeEtcd.vmScrape.spec.endpoints.scheme # <--- Эта строка в Арго не отрабатывает
-         #   value: "http"                                 # <--- Эта строка в Арго не отрабатывает
       values: |
         alloy:
           configMap:
