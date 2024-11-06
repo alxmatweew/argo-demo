@@ -78,6 +78,7 @@ spec:
                 codec: json
               labels:
                 logger: "vector-kube"
+                l_pod_name: "\{\{ kubernetes.pod_name \}\}"
 
     chart: vector
   destination:
